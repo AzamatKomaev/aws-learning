@@ -1,0 +1,24 @@
+- name: Setup Nginx and configure load balancer
+  hosts: nginx-main
+  become: yes
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Copy load balancer config to Nginx
+      copy:
+        src: nginx/lb.conf
+        dest: /etc/nginx/conf.d/lb.conf
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Ensure Nginx is running and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes

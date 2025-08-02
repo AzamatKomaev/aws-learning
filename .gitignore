@@ -3,3 +3,7 @@ terraform.tfvars
 .terraform
 terraform.tfstate
 *.tfstate.*
+*.tfstate
+
+hello-app/env
+__pycache__
